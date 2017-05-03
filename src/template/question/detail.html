@@ -1,0 +1,25 @@
+{{ question.title }}
+{{ question.text }}
+{{ question.user }}
+{{ question.created }}
+
+{% with answers.count as total_answers %}
+{{ total_answers }} answers{{ total_answwers|pluralize}}
+{% endwith %}
+
+{% for answer in answers %}
+	{{ answer.user }}
+	{{ answer.text }}
+	{{ answer.created }}
+{% empty %}
+<p>There are no answers yet.</p>
+{% endfor %}
+
+{% if new_answer %}
+	<h2>Your answer has been added.</h2>
+{% else %}
+	<form action="" method="POST">{% csrf_token %}
+		{{ answer_form.as_p }}
+		<input type="Submit" name="Answer">
+	</form>
+{% endif %}

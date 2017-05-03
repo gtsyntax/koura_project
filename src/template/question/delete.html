@@ -1,0 +1,4 @@
+<p>Are you sure you want to delete {{ question.title }}</p>
+<form method="POST" action="">{% csrf_token %}
+	<input type="Submit" name="Delete"> | <a href="{{ question.get_absolute_url }}">Cancel</a>
+</form>

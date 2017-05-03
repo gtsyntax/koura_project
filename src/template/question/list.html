@@ -1,0 +1,7 @@
+{% for question in questions %}
+	<a href="{{ question.get_absolute_url }}">{{ question.title }}</a>
+	{{ question.text }}
+	{{ question.user }}
+	{{ question.created }}
+
+{% endfor %}
