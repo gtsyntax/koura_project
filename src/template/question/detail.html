@@ -1,25 +1,36 @@
-{{ question.title }}
-{{ question.text }}
-{{ question.user }}
-{{ question.created }}
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="row">
+	<div class="col-xs-8">
+		<h2>{{ question.title }}</h2>
+		<p>{{ question.text }}</p>
 
-{% with answers.count as total_answers %}
-{{ total_answers }} answers{{ total_answwers|pluralize}}
-{% endwith %}
+		{% with answers.count as total_answers %}
+		<p>{{ total_answers }} answers{{ total_answwers|pluralize}}</p>
+		<hr>
+		{% endwith %}
 
-{% for answer in answers %}
-	{{ answer.user }}
-	{{ answer.text }}
-	{{ answer.created }}
-{% empty %}
-<p>There are no answers yet.</p>
-{% endfor %}
+		{% if new_answer %}
+			<h2>Your answer has been added.</h2>
+		{% else %}
+			<form action="" method="POST">{% csrf_token %}
+				{{ answer_form | crispy }}
+				<input type="Submit" name="Answer" value="Answer" class="btn btn-default">
+			</form>
+		{% endif %}
+		<hr>
 
-{% if new_answer %}
-	<h2>Your answer has been added.</h2>
-{% else %}
-	<form action="" method="POST">{% csrf_token %}
-		{{ answer_form.as_p }}
-		<input type="Submit" name="Answer">
-	</form>
-{% endif %}
+		{% for answer in answers %}
+			<p>{{ answer.user }} &middot; {{ answer.created | timesince }}</p>
+			<p>{{ answer.text }}</p>
+			<small></small>
+		{% empty %}
+		<p>There are no answers yet.</p>
+		{% endfor %}
+	</div>
+
+	<div class="col-xs-4">Related Questions<hr></div>
+</div>
+
+{% endblock %}

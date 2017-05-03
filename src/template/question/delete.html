@@ -1,4 +1,8 @@
-<p>Are you sure you want to delete {{ question.title }}</p>
+{% extends 'base.html' %}
+{% block content %}
+<h3>Are you sure you want to delete "<strong>{{ question.title }}</strong>"</h3>
 <form method="POST" action="">{% csrf_token %}
-	<input type="Submit" name="Delete"> | <a href="{{ question.get_absolute_url }}">Cancel</a>
+	<input type="Submit" name="Delete" value="Yes" class="btn btn-danger"> 
+	<a href="{{ question.get_absolute_url }}">Cancel</a>
 </form>
+{% endblock %}
