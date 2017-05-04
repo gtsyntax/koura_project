@@ -14,7 +14,6 @@ class Question(models.Model):
 		('published', 'PUBLISHED'),
 	)
 	title = models.CharField(max_length=300)
-	text = models.TextField()
 	slug = models.SlugField(max_length=300)
 	created = models.DateTimeField(auto_now_add=True)
 	user = models.ForeignKey(User, related_name="questions")
