@@ -37,10 +37,20 @@ body {
   color: #22313F;
 }
 
+.question-detail-title {
+  font-weight: 800;
+  font-size: 24px;
+  color: #22313F; 
+}
+
 .question-date {
   color: #BFBFBF;
 }
 
 .question-user {
   color: #BFBFBF;
+}
+
+.bold{
+  font-weight: 800;
 }

@@ -10,9 +10,15 @@ from .forms import QuestionForm, AnswerForm
 def question_list(request):
 	# qs = Question.objects.filter(status="published")
 	qs = Question.active.all()
+	question_form = QuestionForm(request.POST or None)
+	if question_form.is_valid():
+		new_question = question_form.save(commit=False)
+		new_question.user = request.user
+		new_question.save()
 	template = 'question/list.html'
 	context = {
-		"questions": qs
+		"questions": qs,
+		"question_form": question_form
 	}
 	return render(request, template, context)
 

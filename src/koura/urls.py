@@ -21,6 +21,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^question/', include('question.urls', namespace="question")),
+    url(r'^api/', include('question.api.urls', namespace='question-api'))
 ]
 
 if settings.DEBUG:

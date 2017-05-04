@@ -3,7 +3,7 @@
 {% block content %}
 <div class="row">
 	<div class="col-xs-8">
-		<h2>{{ question.title }}</h2>
+		<h2 class="question-detail-title">{{ question.title }}?</h2>
 
 		{% with answers.count as total_answers %}
 		<p>{{ total_answers }} answers{{ total_answwers|pluralize}}</p>
