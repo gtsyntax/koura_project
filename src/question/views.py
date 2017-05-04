@@ -9,7 +9,7 @@ from .forms import QuestionForm, AnswerForm
 
 def question_list(request):
 	# qs = Question.objects.filter(status="published")
-	qs = Question.active.all()
+	qs = Question.objects.all()
 	question_form = QuestionForm(request.POST or None)
 	if question_form.is_valid():
 		new_question = question_form.save(commit=False)

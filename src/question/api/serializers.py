@@ -4,12 +4,12 @@ from question.models import Question, Answer
 from accounts.api.serializers import UserDisplaySerializer
 
 class QuestionModelSerializer(serializers.ModelSerializer):
-	user = UserDisplaySerializer()
+	user = UserDisplaySerializer(read_only=True)
 	date_display = serializers.SerializerMethodField()
 	timesince = serializers.SerializerMethodField()
 	class Meta:
 		model = Question
-		fields = ('title','created','date_display', 'timesince', 'user')
+		fields = ('id','title','created','date_display', 'timesince', 'user')
 
 	def get_date_display(self, obj):
 		return obj.created.strftime("%b %d")

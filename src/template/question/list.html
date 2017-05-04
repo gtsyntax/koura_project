@@ -5,22 +5,23 @@
 <div class="col-xs-2 feed">Feeds</div>
 
 <div class="question-box col-xs-7">
-<form action="" method="POST">{% csrf_token %}
+<form id="question-form" action="" method="POST">{% csrf_token %}
 	{{ question_form | crispy }}
-	<input type="Submit" name="Ask" value="Ask" class="btn btn-default">
+	<input type="submit" name="Ask" value="Ask" class="btn btn-default">
 </form>
 <hr>
-<div class="q-box ">
+<div id="q-box">
 	
 </div>
 
-{% for question in questions %}
+<!-- {% for question in questions %}
 	<span class="question-date">Question asked &middot; {{ question.created }}</span>
 	<h2 class="question-title"><a href="{{ question.get_absolute_url }}">{{ question.title }}?</a></h2>
 	<small class="question-user">by {{ question.user }}</small>
 	<br>
 	<hr>
-{% endfor %}
+{% endfor %} -->
+
 </div>
 
 <div class="col-xs-3 trending">Trending</div>

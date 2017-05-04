@@ -1,26 +1,67 @@
 $(document).ready(function() {
-	$('.feed').addClass('bold');
-	$('.trending').addClass('bold');
 
-	$.ajax({
-		url: '/api/question/',
-		type: 'GET',
-		success: function(data){
-			$.each(data, function(key, value){
-				var questionKey = key;
-				var questionUser = value.user.username;
-				var questionTitle = value.title;
-				var questionCreated = value.date_display;
-				$(".q-box").append(
-					"<span>" + "Question asked &middot; "+ questionCreated + "</span>" +
-					"<h2>" + questionTitle + "?</h2>" +
-					"<small>by " + questionUser + "</small>" +
-					"<br><hr>"
-				)
-			});
+	var questionList = [];
+
+	// This holds the question data
+	function attachQuestion(questionData, prepend){
+		var questionUser = questionData.user.username;
+		var questionTitle = questionData.title;
+		var questionCreated = questionData.date_display;
+		var questionHtml = "<span>" + "Question asked &middot; "+ questionCreated + "</span>" +
+							"<h2>" + questionTitle + "?</h2>" +
+							"<small>by " + questionUser + "</small>" +
+							"<br><hr>"
+		if (prepend==true){
+			$("#q-box").prepend(questionHtml)
+		} else {
+			$("#q-box").append(questionHtml)
 		}
-	});
 
+	}
 
+	// The question data is looped and parsed through this logic
+	function parseQuestions(){
+		if (questionList == 0) {
+			$("#q-box").text("No questions yet")
+		} else {
+			$.each(questionList, function(key, value){
+				var questionKey = key;
+				attachQuestion(value)
+			})
+
+		}
+	}
+
+	// Logic that fetches the question the api.
+	function fetchQuestions(){
+		$.ajax({
+			url: '/api/question/',
+			type: 'GET',
+			success: function(data){
+				questionList = data
+				parseQuestions();
+			}
+		})
+	}
+	fetchQuestions()
+
+	// Logic for creating question with ajax call
+	var $questionForm = $('#question-form');
+	$questionForm.bind('submit', function(event){
+		event.preventDefault();
+		// Value gotten from the input field is stored in the variable this_
+		var this_ = $(this)
+		var formData = this_.serialize()
+
+		$.ajax({
+			url: '/api/question/create/',
+			type: 'POST',
+			data: formData,
+			success: function(data){
+				this_.find("input[type=text]").val("")
+				attachQuestion(data, true)
+			}
+		})
+	})
 
 });

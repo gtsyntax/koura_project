@@ -6,26 +6,13 @@ from django.dispatch import receiver
 from django.utils.text import slugify
 
 # Create your models here.
-class QuestionManager(models.Manager):
-	def get_queryset(self):
-		return super(QuestionManager, self).get_queryset()\
-											.filter(status='published')
 
 class Question(models.Model):
-	STATUS_CHOICES = (
-		('draft', 'DRAFT'),
-		('published', 'PUBLISHED'),
-	)
 	title = models.CharField(max_length=300)
 	slug = models.SlugField(max_length=300, unique=True)
 	created = models.DateTimeField(auto_now_add=True)
 	user = models.ForeignKey(User, related_name="questions")
 	updated = models.DateTimeField(auto_now=True)
-	status = models.CharField(max_length=10,
-								choices=STATUS_CHOICES,
-								default='draft')
-	objects = models.Manager()
-	active = QuestionManager() 
 
 	class Meta:
 		ordering = ['-created']
