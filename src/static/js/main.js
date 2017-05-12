@@ -1,16 +1,38 @@
 $(document).ready(function() {
 
+	var $username  = $('input#id_username');
+	var $password  = $('input#id_password');
+	$('#login-btn').attr("disabled", true);
+	$username.keyup(function(){
+		if($username.length > 0){
+			$password.keyup(function(){
+				if($password.length > 0){
+					$('#login-btn').attr("disabled", false);
+				} 
+			})
+		}
+	})
+
 	var questionList = [];
 
 	// This holds the question data
 	function attachQuestion(questionData, prepend){
 		var questionUser = questionData.user.username;
 		var questionTitle = questionData.title;
+		var questionImage = questionData.image;
 		var questionCreated = questionData.date_display;
-		var questionHtml = "<span>" + "Question asked &middot; "+ questionCreated + "</span>" +
-							"<h2>" + questionTitle + "?</h2>" +
-							"<small>by " + questionUser + "</small>" +
+		if (questionImage == null){
+			var questionHtml = "<span>" + "Question asked &middot; "+ questionCreated + "</span>" +
+							"<h2>" + questionTitle + "?</h2>" + 
+							"<small>by " + questionUser + "</small>"+
 							"<br><hr>"
+		} else {
+			var questionHtml = "<span>" + "Question asked &middot; "+ questionCreated + "</span>" +
+							"<h2>" + questionTitle + "?</h2>" + 
+							'<img src=' + questionImage + ' class="img-responsive" />' +
+							"<small>by " + questionUser + "</small>"+
+							"<br><hr>"
+		}
 		if (prepend==true){
 			$("#q-box").prepend(questionHtml)
 		} else {

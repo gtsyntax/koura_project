@@ -9,7 +9,7 @@ class QuestionModelSerializer(serializers.ModelSerializer):
 	timesince = serializers.SerializerMethodField()
 	class Meta:
 		model = Question
-		fields = ('id','title','created','date_display', 'timesince', 'user')
+		fields = ('id','image','title','created','date_display', 'timesince', 'user')
 
 	def get_date_display(self, obj):
 		return obj.created.strftime("%b %d")

@@ -4,8 +4,8 @@
 <div class="row">
 <div class="col-xs-2 feed">Feeds</div>
 
-<div class="question-box col-xs-7">
-<form id="question-form" action="" method="POST">{% csrf_token %}
+<div class="question-box col-xs-6">
+<form id="question-form" action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
 	{{ question_form | crispy }}
 	<input type="submit" name="Ask" value="Ask" class="btn btn-default">
 </form>

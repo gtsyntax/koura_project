@@ -10,7 +10,7 @@ from .forms import QuestionForm, AnswerForm
 def question_list(request):
 	# qs = Question.objects.filter(status="published")
 	qs = Question.objects.all()
-	question_form = QuestionForm(request.POST or None)
+	question_form = QuestionForm(request.POST or None, request.FILES or None)
 	if question_form.is_valid():
 		new_question = question_form.save(commit=False)
 		new_question.user = request.user
@@ -60,7 +60,7 @@ def question_create(request):
 @login_required
 def question_update(request, id=None):
 	obj = get_object_or_404(Question, id=id)
-	form = QuestionForm(request.POST or None, instance=obj)
+	form = QuestionForm(request.POST or None, request.FILES or None, instance=obj)
 	if form.is_valid():
 		obj = form.save(commit=False)
 		obj.save()

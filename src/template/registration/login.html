@@ -1,0 +1,36 @@
+{% extends 'accounts/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<!-- 	{% if form.errors %}
+	{% else %}
+		<h1>Login</h1>
+	{% endif %} -->
+<!-- 	<div class="login-form">
+		<form action="{% url 'accounts:login' %}" method="POST">{% csrf_token %}
+			{{ form.as_p }}
+			<input type="hidden" name="next" value="{{ next }}"/>
+			<p><input type="submit" name="login" value="Login"></p>
+		</form>
+	</div> -->
+
+	<div class="plain">
+	<div class="container">
+		<div class="lead-text">
+			<h1>Koura</h1>
+			<p>Find and share knowledge with people from all around the world</p>
+		</div>
+		<div class="row">
+			<div class="col-xs-3"></div>
+			<div class="col-xs-4 login-form">
+				<form action="{% url 'accounts:login' %}" method="POST">{% csrf_token %}
+					{{ form | crispy }}
+					<input type="hidden" name="next" value="{{ next }}"/>
+					<p><input type="submit" name="login" value="Login" class="btn btn-primary" id="login-btn"></p>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+

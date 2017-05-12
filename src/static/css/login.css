@@ -1,0 +1,51 @@
+/*
+ * Start Bootstrap - Full (http://startbootstrap.com/)
+ * Copyright 2013-2016 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
+ */
+
+body {
+    margin-top: 50px; /* Required margin for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+
+/* Header Image Background - Change the URL below to your image path (example: ../images/background.jpg) */
+
+.full {
+    /*background: url("../images/login-background-img.jpg") no-repeat center center fixed;*/
+    /*background-image: url("../images/login-background-img.jpg");*/
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+    overflow-x: hidden;
+}
+
+.plain {
+	height: 500px;
+	width: 50%;
+	background-color: #ffffff;
+	position: absolute;
+	margin-top: 30px;
+	left: 25%;
+	border-radius: 5px;
+}
+
+.lead-text h1 {
+	font-weight: 800;
+	font-size: 60px;
+	width: 20%;
+	margin-left: 18%;
+	color: #C0392B;
+}
+
+.lead-text p {
+	font-size: medium;
+    font-weight: 600;
+    margin-left: 5%;
+    color: #BDC3C7;
+    margin-bottom: 40px; 
+}
+
+.login-form {
+	border-left: 1px solid #BDC3C7;
+}

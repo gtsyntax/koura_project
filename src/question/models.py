@@ -9,6 +9,10 @@ from django.utils.text import slugify
 
 class Question(models.Model):
 	title = models.CharField(max_length=300)
+	image = models.ImageField(upload_to='post_images/', null=True, blank=True,
+		height_field="height_field", width_field="width_field")
+	height_field = models.IntegerField(default=250)
+	width_field = models.IntegerField(default=100)
 	slug = models.SlugField(max_length=300, unique=True)
 	created = models.DateTimeField(auto_now_add=True)
 	user = models.ForeignKey(User, related_name="questions")
